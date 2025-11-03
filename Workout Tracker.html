@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workout Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { font-family: sans-serif; margin: 20px; background: #f5f5f5; }
+    .screen { display: none; }
+    .active { display: block; }
+    button { margin: 10px; padding: 10px 20px; font-size: 16px; }
+    .card { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+
+  <!-- 🏁 Start Screen -->
+  <div id="startScreen" class="screen active">
+    <h1>Welcome to Workout Tracker</h1>
+    <button onclick="goTo('workoutScreen')">Start Workout</button>
+    <button onclick="goTo('reminderScreen')">Set Reminder</button>
+  </div>
+
+  <!-- 🏋️ Workout Selection Screen -->
+  <div id="workoutScreen" class="screen">
+    <h2>Select Your Workout</h2>
+    <div class="card">
+      <p>Beginner Workout</p>
+      <button onclick="logWorkout()">Log</button>
+    </div>
+    <div class="card">
+      <p>Intermediate Workout</p>
+      <button onclick="logWorkout()">Log</button>
+    </div>
+    <div class="card">
+      <p>Advanced Workout</p>
+      <button onclick="logWorkout()">Log</button>
+    </div>
+    <button onclick="goTo('startScreen')">Back</button>
+  </div>
+
+  <!-- ✅ Log Confirmation Screen -->
+  <div id="confirmationScreen" class="screen">
+    <h2>Workout Logged!</h2>
+    <button onclick="goTo('workoutScreen')">Back</button>
+    <button onclick="alert('Progress screen coming soon')">View Progress</button>
+  </div>
+
+  <!-- ⏰ Reminder Settings Screen -->
+  <div id="reminderScreen" class="screen">
+    <h2>Set a Reminder</h2>
+    <label for="reminderTime">Time:</label>
+    <select id="reminderTime">
+      <option>06:00 AM</option>
+      <option>08:00 AM</option>
+      <option>10:00 AM</option>
+      <option>12:00 PM</option>
+    </select>
+    <br />
+    <button onclick="setReminder()">Set Reminder</button>
+    <button onclick="goTo('startScreen')">Back</button>
+  </div>
+
+  <script>
+    function goTo(screenId) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(screenId).classList.add('active');
+    }
+
+    function logWorkout() {
+      alert("Workout logged successfully!");
+      goTo('confirmationScreen');
+    }
+
+    function setReminder() {
+      const time = document.getElementById('reminderTime').value;
+      alert("Reminder set for " + time);
+      goTo('startScreen');
+    }
+  </script>
+
+</body>
+</html>
