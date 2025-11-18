@@ -1,38 +1,74 @@
-# workout-tracker
-CS361 Milestone #1 – Workout Tracker UI
+# Workout Tracker Microservice
 
-This is a simple workout tracking web app built for CS361 – Milestone #1.  
-Users can log workouts, set reminders, and view confirmation messages.  
-The app is designed to be inclusive, responsive, and easy to maintain.
+# Overview
+This microservice allows users to record and retrieve workout sessions.  
+Implemented using **Python + Flask**.
 
-## Features
-- Log beginner, intermediate, or advanced workouts
-- Set a reminder time using a dropdown
-- View confirmation and choose next steps
-- Navigate between screens with clear buttons
-- Inclusivity Heuristics #1–#8 fully reflected
+---
 
-## Tech Stack
-- HTML5
-- CSS3 (inline or external)
-- JavaScript (vanilla)
-- GitHub Releases
+# API Specification
 
-## How to Run
-1. Clone or download the repository
-2. Open `Workout Tracker.html` in any modern browser
-3. Click "Start Workout" or "Set Reminder" to begin
+# **POST /workouts**
+- **Description**: Add a new workout record.
+- **Request Body (JSON)**:
+```json
+{
+  "exercise": "Running",
+  "duration": 30
+}
 
-## Release
-Version: `v1.0.0`  
-Milestone: CS361 – Assignment 5
+**Response:**
+{
+  "message": "Workout added",
+  "workout": {
+    "exercise": "Running",
+    "duration": 30
+  }
+}
 
-## Inclusivity Heuristics Reflected
-- IH#1: Clear labels like "Beginner Workout" and "Log"
-- IH#2: High-contrast buttons and readable fonts
-- IH#3: One-tap logging for minimal interaction
-- IH#4: Familiar dropdown for time selection
-- IH#5: Back buttons on all screens
-- IH#6: Clear next steps after logging
-- IH#7: Prevents invalid input via dropdown
-- IH#8: Flexible scheduling for all users
+**GET /workouts
+
+Description: Retrieve all recorded workouts.
+Response:**
+
+[
+  {
+    "exercise": "Running",
+    "duration": 30
+  }
+]
+
+
+**Communication Contract
+
+Protocol: HTTP
+Data Format: JSON
+Endpoints:
+
+POST /workouts
+GET /workouts**
+
+**UML Sequence Diagram**
+<img width="3371" height="2268" alt="image" src="https://github.com/user-attachments/assets/095340ee-ce5d-4997-83fc-135576dcd52c" />
+
+
+**How to Run**
+
+Install dependencies:
+pip install flask requests
+
+Start the service:
+python workout_service.py
+
+Run the test program:
+python test_workout_service.py
+
+
+**Team Contributions**
+
+Ikumi Kameyama: Implemented Workout Tracker microservice, wrote test program, created UML diagram.
+
+
+**Demo Video**
+
+[Link or file name: workout_service_demo.mp4]
